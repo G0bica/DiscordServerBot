@@ -37,11 +37,14 @@ export default class MirrorCommand implements IBotCommand {
 
     public async process(msg: string, answer: IBotMessage, msgObj: discord.Message, client: discord.Client, config: IBotConfig, commands: IBotCommand[]): Promise<void> {
         if(msgObj.author.avatarURL != null){
-            answer.setTextOnly(msgObj.member + " you're looking beautiful today :)"); //Sends a heart-warming response
-            let m = await msgObj.channel.send(msgObj.author.avatarURL) as any; //Waits until it has sent our avatar icon then reacts to it with the emoji
-            m.react('😍')
+            var PFPEmbed = new discord.RichEmbed()
+                .setTitle(`${msgObj.member}, You are looking bueatiful today :)`)
+                .setImage(msgObj.author.avatarURL)
+            message.channel.end(PFPEMBED)
+                .then(function(message){m.react('😍')
+                 });
                 .then(console.log)
-                .catch(console.error)       
+                .catch(console.error)        
         }
         else
         {
